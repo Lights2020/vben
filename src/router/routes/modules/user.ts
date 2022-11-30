@@ -24,14 +24,6 @@ const user: AppRouteModule = {
         title: t('routes.demo.user.userCenter'),
       },
     },
-    // {
-    //   path: 'workbench',
-    //   name: 'Workbench',
-    //   component: () => import('/@/views/dashboard/workbench/index.vue'),
-    //   meta: {
-    //     title: t('routes.dashboard.workbench'),
-    //   },
-    // },
   ],
 }
 

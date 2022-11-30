@@ -6,7 +6,7 @@ export function getBasicColumns(): BasicColumn[] {
   return [
     {
       title: '用户信息',
-      width: 150,
+      width: 180,
       dataIndex: 'nickName',
       // scopedSlots: { customRender: 'userInfo' },
     },
@@ -17,7 +17,7 @@ export function getBasicColumns(): BasicColumn[] {
     },
     {
       title: '登陆信息',
-      width: 250,
+      width: 280,
       dataIndex: 'lastLoginTime',
     },
     {
@@ -48,17 +48,6 @@ export function getBasicColumns(): BasicColumn[] {
   ]
 }
 
-const renderContent = ({ text, index }: { text: any; index: number }) => {
-  const obj: any = {
-    children: text,
-    attrs: {},
-  }
-  if (index === 9) {
-    obj.attrs.colSpan = 0
-  }
-  return obj
-}
-
 export const getAdvanceSchema = (itemNumber = 6): FormSchema[] => {
   const arr: any = []
   for (let index = 0; index < itemNumber; index++) {
@@ -87,9 +76,6 @@ export function getFormConfig(): Partial<FormProps> {
         },
         componentProps: {
           placeholder: '请输入完整手机号',
-          onChange: (e: any) => {
-            // console.log(e)
-          },
         },
       },
       {

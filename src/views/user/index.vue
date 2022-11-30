@@ -1,20 +1,7 @@
 <template>
   <BasicTable @register="registerTable">
     <template #form-custom> custom-slot </template>
-    <!-- <template #headerTop>
-      <a-alert type="info" show-icon>
-        <template #message>
-          <template v-if="checkedKeys.length > 0">
-            <span>已选中{{ checkedKeys.length }}条记录(可跨页)</span>
-            <a-button type="link" @click="checkedKeys = []" size="small">清空</a-button>
-          </template>
-          <template v-else>
-            <span>未选中任何项目</span>
-          </template>
-        </template>
-      </a-alert>
-    </template> -->
-    <template #bodyCell="{ column, record, text }">
+    <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'nickName' || column.key === 'tel'">
         <div>
           <p>昵称：{{ record.nickName }}</p>
@@ -69,9 +56,6 @@
         <TableAction :actions="createActions(record, column)" />
       </template>
     </template>
-    <template #toolbar>
-      <a-button type="primary" @click="getFormValues">获取表单数据</a-button>
-    </template>
   </BasicTable>
   <Detail @register="registerDetail" :deData="listData" />
 </template>
@@ -79,14 +63,13 @@
   import { defineComponent, ref, reactive, toRefs } from 'vue'
   import { BasicTable, useTable, TableAction, ActionItem, EditRecordRow } from '/@/components/Table'
   import { getBasicColumns, getFormConfig } from './tableData'
-  import { Alert } from 'ant-design-vue'
   import { useDrawer } from '/@/components/Drawer'
   import Detail from './detail/index.vue'
 
   import { demoListApi } from '/@/api/demo/table'
 
   export default defineComponent({
-    components: { BasicTable, AAlert: Alert, TableAction, Detail },
+    components: { BasicTable, TableAction, Detail },
     setup() {
       const checkedKeys = ref<Array<string | number>>([])
       const [registerDetail, { openDrawer: openDetail }] = useDrawer()
@@ -99,6 +82,7 @@
         showTableSetting: true,
         tableSetting: { fullScreen: true },
         showIndexColumn: false,
+        bordered: true,
         rowKey: 'id',
         rowSelection: {
           type: 'checkbox',
@@ -114,9 +98,6 @@
       const state = reactive({
         listData: '',
       })
-      function getFormValues() {
-        console.log(getForm().getFieldsValue())
-      }
 
       function onSelectChange(selectedRowKeys: (string | number)[]) {
         console.log(selectedRowKeys)
@@ -142,7 +123,6 @@
 
       return {
         registerTable,
-        getFormValues,
         checkedKeys,
         onSelectChange,
         createActions,

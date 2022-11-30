@@ -92,13 +92,7 @@
     },
     setup(props) {
       const modelRef = ref({})
-      const [
-        registerForm,
-        {
-          // setFieldsValue,
-          // setProps
-        },
-      ] = useForm({
+      const [registerForm, {}] = useForm({
         labelWidth: 120,
         schemas,
         showActionButtonGroup: false,
@@ -112,19 +106,7 @@
       })
 
       function onDataReceive(data) {
-        console.log('Data Received', data)
-        // 方式1;
-        // setFieldsValue({
-        //   field2: data.data,
-        //   field1: data.info,
-        // });
-
-        // // 方式2
         modelRef.value = { field2: data.data, field1: data.info }
-
-        // setProps({
-        //   model:{ field2: data.data, field1: data.info }
-        // })
       }
 
       function handleVisibleChange(v) {
