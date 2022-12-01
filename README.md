@@ -1,8 +1,6 @@
-
-
 ## 简介
 
-精简 Vue Vben Admin。
+基于 Vue Vben Admin 开发的中后台项目
 
 ## 特性
 
@@ -61,7 +59,6 @@ pnpm serve
 pnpm build
 ```
 
-
 ## 相关仓库
 
 如果这些插件对你有帮助，可以给一个 star 支持下
@@ -73,5 +70,3 @@ pnpm build
 - [vite-plugin-imagemin](https://github.com/anncwb/vite-plugin-imagemin) - 用于打包压缩图片资源
 - [vite-plugin-compression](https://github.com/anncwb/vite-plugin-compression) - 用于打包输出.gz|.brotil 文件
 - [vite-plugin-svg-icons](https://github.com/anncwb/vite-plugin-svg-icons) - 用于快速生成 svg 雪碧图
-
-
