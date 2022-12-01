@@ -2,7 +2,7 @@
 
 ## 简介
 
-精简 Vue Vben Admin。
+基于 Vue Vben Admin 开发的中后台项目
 
 ## 特性
 
