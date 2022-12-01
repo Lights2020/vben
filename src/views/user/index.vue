@@ -51,28 +51,44 @@
           <p>员工：{{ record.enterpriseStaff }}</p>
         </div>
       </template>
-
       <template v-if="column.key === 'action'">
-        <TableAction :actions="createActions(record, column)" />
+        <TableAction
+          :actions="[
+            {
+              label: '查看',
+              type: 'primary',
+              onClick: handleDetail.bind(null, record),
+              divider: true,
+            },
+            {
+              label: '禁用',
+              type: 'warning',
+              onClick: handleDisable.bind(null, record),
+              divider: true,
+            },
+          ]"
+        />
       </template>
     </template>
   </BasicTable>
   <Detail @register="registerDetail" :deData="listData" />
+  <DisableModal @register="registerDisable" />
 </template>
 <script lang="ts">
   import { defineComponent, ref, reactive, toRefs } from 'vue'
-  import { BasicTable, useTable, TableAction, ActionItem, EditRecordRow } from '/@/components/Table'
+  import { BasicTable, useTable, TableAction, EditRecordRow } from '/@/components/Table'
   import { getBasicColumns, getFormConfig } from './tableData'
   import { useDrawer } from '/@/components/Drawer'
   import Detail from './detail/index.vue'
-
   import { demoListApi } from '/@/api/demo/table'
-
+  import DisableModal from './detail/basicInfo/disableModal.vue'
+  import { useModal } from '/@/components/Modal'
   export default defineComponent({
-    components: { BasicTable, TableAction, Detail },
+    components: { BasicTable, TableAction, Detail, DisableModal },
     setup() {
       const checkedKeys = ref<Array<string | number>>([])
       const [registerDetail, { openDrawer: openDetail }] = useDrawer()
+      const [registerDisable, { openModal: disableOperateModal }] = useModal()
       const [registerTable, { getForm }] = useTable({
         title: '',
         api: demoListApi,
@@ -100,34 +116,28 @@
       })
 
       function onSelectChange(selectedRowKeys: (string | number)[]) {
-        console.log(selectedRowKeys)
         checkedKeys.value = selectedRowKeys
       }
-      function handleEdit(record: EditRecordRow) {
+      function handleDetail(record: EditRecordRow) {
         openDetail(true, {
           data: record,
         })
         state.listData = record
       }
-      function createActions(record: EditRecordRow, column: BasicColumn): ActionItem[] {
-        if (!record.editable) {
-          return [
-            {
-              label: '查看',
-              onClick: handleEdit.bind(null, record),
-              type: 'primary',
-            },
-          ]
-        }
+      function handleDisable(record: EditRecordRow) {
+        disableOperateModal(true, {
+          data: record,
+        })
       }
-
       return {
         registerTable,
         checkedKeys,
         onSelectChange,
-        createActions,
         registerDetail,
         ...toRefs(state),
+        registerDisable,
+        handleDetail,
+        handleDisable,
       }
     },
   })
