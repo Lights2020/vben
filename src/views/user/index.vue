@@ -8,6 +8,14 @@
           <p>手机号：{{ record.tel }}</p>
         </div>
       </template>
+      <template v-if="column.key === 'level'">
+        <div>
+          <p>{{ record.level }}</p>
+          <p class="edit-btn" @click="editLevel" style="cursor: pointer"
+            ><Icon icon="jam:write" :size="14"></Icon>更新等级</p
+          >
+        </div>
+      </template>
       <template
         v-if="
           column.key === 'lastLoginTime' || column.key === 'lastPosition' || column.key === 'imei'
@@ -73,6 +81,7 @@
   </BasicTable>
   <Detail @register="registerDetail" :deData="listData" />
   <DisableModal @register="registerDisable" />
+  <EditModal @register="registerEdit" />
 </template>
 <script lang="ts">
   import { defineComponent, ref, reactive, toRefs } from 'vue'
@@ -82,13 +91,17 @@
   import Detail from './detail/index.vue'
   import { demoListApi } from '/@/api/demo/table'
   import DisableModal from './detail/basicInfo/disableModal.vue'
+  import EditModal from './editModal.vue'
   import { useModal } from '/@/components/Modal'
+  import { Icon } from '/@/components/Icon/index'
+
   export default defineComponent({
-    components: { BasicTable, TableAction, Detail, DisableModal },
+    components: { BasicTable, TableAction, Detail, DisableModal, Icon, EditModal },
     setup() {
       const checkedKeys = ref<Array<string | number>>([])
       const [registerDetail, { openDrawer: openDetail }] = useDrawer()
       const [registerDisable, { openModal: disableOperateModal }] = useModal()
+      const [registerEdit, { openModal: editOperateModal }] = useModal()
       const [registerTable, { getForm }] = useTable({
         title: '',
         api: demoListApi,
@@ -112,7 +125,7 @@
         },
       })
       const state = reactive({
-        listData: '',
+        listData: {},
       })
 
       function onSelectChange(selectedRowKeys: (string | number)[]) {
@@ -129,6 +142,11 @@
           data: record,
         })
       }
+      function editLevel(record: number) {
+        editOperateModal(true, {
+          data: record,
+        })
+      }
       return {
         registerTable,
         checkedKeys,
@@ -136,8 +154,10 @@
         registerDetail,
         ...toRefs(state),
         registerDisable,
+        registerEdit,
         handleDetail,
         handleDisable,
+        editLevel,
       }
     },
   })

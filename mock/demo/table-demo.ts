@@ -1,14 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { Random } from 'mockjs'
 import { resultPageSuccess } from '../_util'
-
-function getRandomPics(count = 10): string[] {
-  const arr: string[] = []
-  for (let i = 0; i < count; i++) {
-    arr.push(Random.image('800x600', Random.color(), Random.color(), Random.title()))
-  }
-  return arr
-}
 
 const demoList = (() => {
   const result: any[] = []
@@ -16,7 +7,7 @@ const demoList = (() => {
     result.push({
       tel: '1' + Math.floor(Math.random() * 10000000000),
       nickName: 'LV' + Math.floor(Math.random() * 10000000),
-      level: Math.floor(Math.random() * 10),
+      level: ['普通会员', '超级会员'][Math.round(Math.random() * 1)],
       lastLoginTime: '@datetime',
       lastPosition: '@city()',
       imei: Math.floor(Math.random() * 10000) + 'F' + Math.floor(Math.random() * 10) + 'E',

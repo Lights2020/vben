@@ -142,12 +142,12 @@ export function getFormConfig(): Partial<FormProps> {
               key: '0',
             },
             {
-              label: '0',
+              label: '普通会员',
               value: '1',
               key: '1',
             },
             {
-              label: '1',
+              label: '超级会员',
               value: '2',
               key: '2',
             },
