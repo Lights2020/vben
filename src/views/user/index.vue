@@ -12,7 +12,7 @@
         <div>
           <p>{{ record.level }}</p>
           <p class="edit-btn" @click="editLevel" style="cursor: pointer"
-            ><Icon icon="jam:write" :size="14"></Icon>更新等级</p
+            ><Icon icon="jam:write" :size="14" />更新等级</p
           >
         </div>
       </template>
@@ -102,7 +102,7 @@
       const [registerDetail, { openDrawer: openDetail }] = useDrawer()
       const [registerDisable, { openModal: disableOperateModal }] = useModal()
       const [registerEdit, { openModal: editOperateModal }] = useModal()
-      const [registerTable, { getForm }] = useTable({
+      const [registerTable] = useTable({
         title: '',
         api: demoListApi,
         columns: getBasicColumns(),
