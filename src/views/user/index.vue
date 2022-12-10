@@ -69,7 +69,7 @@
               divider: true,
             },
             {
-              label: '禁用',
+              label: '禁用.',
               type: 'warning',
               onClick: handleDisable.bind(null, record),
               divider: true,
