@@ -15,7 +15,6 @@
   import { defineComponent, ref, nextTick } from 'vue'
   import { BasicModal, useModalInner } from '/@/components/Modal'
   import { BasicForm, FormSchema, useForm } from '/@/components/Form/index'
-  import { Icon } from '/@/components/Icon/index'
 
   const schemas: FormSchema[] = [
     {
@@ -42,7 +41,7 @@
     },
   ]
   export default defineComponent({
-    components: { BasicModal, BasicForm, Icon },
+    components: { BasicModal, BasicForm },
     props: {
       userData: { type: Object },
     },

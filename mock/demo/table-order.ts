@@ -1,14 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { Random } from 'mockjs'
 import { resultPageSuccess } from '../_util'
-
-function getRandomPics(count = 10): string[] {
-  const arr: string[] = []
-  for (let i = 0; i < count; i++) {
-    arr.push(Random.image('800x600', Random.color(), Random.color(), Random.title()))
-  }
-  return arr
-}
 
 const demoList = (() => {
   const result: any[] = []

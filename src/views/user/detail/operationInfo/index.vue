@@ -6,7 +6,6 @@
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
   import { BasicTable, useTable, BasicColumn } from '/@/components/Table'
-  import { Tooltip } from 'ant-design-vue'
   import { operationApi } from '/@/api/demo/operationTable'
 
   const columns: BasicColumn[] = [
@@ -33,7 +32,6 @@
   export default defineComponent({
     components: {
       BasicTable,
-      Tooltip,
     },
     setup() {
       const pagination = ref<any>(false)

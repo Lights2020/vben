@@ -41,7 +41,7 @@
     setup(props, context) {
       console.log('props: ', props)
       console.log('attrs: ', context.attrs)
-      const [registerForm, { setFieldsValue }] = useForm({
+      const [registerForm] = useForm({
         labelWidth: 120,
         schemas,
         showActionButtonGroup: false,
@@ -49,7 +49,7 @@
           span: 24,
         },
       })
-      const [register] = useDrawerInner((data) => {})
+      const [register] = useDrawerInner()
       return { register, schemas, registerForm, achieveList }
     },
   })

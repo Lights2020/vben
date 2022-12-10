@@ -61,12 +61,11 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, reactive, toRefs, createVNode } from 'vue'
+  import { defineComponent, ref, reactive, toRefs } from 'vue'
   import { BasicTable, useTable, BasicColumn, TableAction } from '/@/components/Table'
-  import { Tooltip, Modal, Tabs } from 'ant-design-vue'
+  import { Tabs } from 'ant-design-vue'
   import { couponTravelApi } from '/@/api/demo/discountTravelTable'
   import { couponEquityApi } from '/@/api/demo/discountEquityTable'
-  import { Icon } from '/@/components/Icon/index'
 
   const columns: BasicColumn[] = [
     {
@@ -111,9 +110,6 @@
     components: {
       BasicTable,
       TableAction,
-      Tooltip,
-      Icon,
-      Modal,
       Tabs,
       TabPane: Tabs.TabPane,
     },
