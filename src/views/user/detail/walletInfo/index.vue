@@ -38,13 +38,12 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, reactive, toRefs, createVNode } from 'vue'
-  import { BasicTable, useTable, BasicColumn, TableAction } from '/@/components/Table'
-  import { Tooltip, Modal, Tabs } from 'ant-design-vue'
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+  import { defineComponent, ref, reactive, toRefs } from 'vue'
+  import { BasicTable, useTable, BasicColumn } from '/@/components/Table'
+  import { Tabs } from 'ant-design-vue'
+  // import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
   import { demoListApi } from '/@/api/demo/walletRechargeTable'
   import { demoListApiUsed } from '/@/api/demo/walletUsedTable'
-  import { Icon } from '/@/components/Icon/index'
   import { useModal } from '/@/components/Modal'
   import RechargeModal from './rechargeModal.vue'
   import RefundModal from './refundModal.vue'
@@ -100,10 +99,6 @@
   export default defineComponent({
     components: {
       BasicTable,
-      TableAction,
-      Tooltip,
-      Icon,
-      Modal,
       RechargeModal,
       RefundModal,
       Tabs,
@@ -143,31 +138,12 @@
       const [registerRecharge, { openModal: openRechargeModal }] = useModal()
       const [registerRefund, { openModal: openRefundModal }] = useModal()
 
-      function handleDetail(record: Recordable) {
-        console.log('查看', record)
-      }
-      function handleDel(record: Recordable) {
-        console.log('删除', record)
-        Modal.confirm({
-          title: '确认要删除该条订单吗?',
-          icon: createVNode(ExclamationCircleOutlined),
-          onOk() {
-            console.log('OK')
-          },
-          onCancel() {
-            console.log('Cancel')
-          },
-          class: 'test',
-        })
-      }
       function getActive(key: number) {
         console.log(key)
       }
       return {
         registerRechargeTable,
         registerUsedTable,
-        handleDetail,
-        handleDel,
         pagination,
         prefixCls: 'list-card',
         ...toRefs(walletBasic),

@@ -95,7 +95,7 @@
   ]
 
   export default defineComponent({
-    components: { BasicTable, TableAction, Tooltip, Icon, Modal },
+    components: { BasicTable, TableAction, Tooltip, Icon },
     setup() {
       const pagination = ref<any>(false)
       const orderBasic = reactive({
