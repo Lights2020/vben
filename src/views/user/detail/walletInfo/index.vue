@@ -41,7 +41,6 @@
   import { defineComponent, ref, reactive, toRefs } from 'vue'
   import { BasicTable, useTable, BasicColumn } from '/@/components/Table'
   import { Tabs } from 'ant-design-vue'
-  // import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
   import { demoListApi } from '/@/api/demo/walletRechargeTable'
   import { demoListApiUsed } from '/@/api/demo/walletUsedTable'
   import { useModal } from '/@/components/Modal'
